@@ -1,0 +1,15 @@
+version: "2"
+
+services:
+  irc:
+    container_name: weechat-$USER
+    build:
+      context: .
+      args:
+        USER: $USER
+        UID: $UID
+        GID: $GROUPS
+    volumes:
+      - ./weechat:/home/$USER/.weechat
+    stdin_open: true
+    tty: true
