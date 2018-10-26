@@ -37,3 +37,10 @@ install-user:
 uninstall-user:
 	$(MAKE) uninstall PREFIX=$$HOME/.local
 
+.PHONY: letsencrypt
+letsencrypt: SHELL=/bin/bash
+letsencrypt:
+	touch weechat/ssl/relay.pem.tmp
+	sudo cat /etc/letsencrypt/live/gitea.portay.io/{privkey,fullchain}.pem >weechat/ssl/relay.pem.tmp
+	mv weechat/ssl/relay.pem{.tmp,}
+

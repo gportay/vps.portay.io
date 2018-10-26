@@ -11,5 +11,8 @@ services:
         GID: $GROUPS
     volumes:
       - ./weechat:/home/$USER/.weechat
+    ports:
+      - "9000:9000"
+      - "9001:9001"
     stdin_open: true
     tty: true
