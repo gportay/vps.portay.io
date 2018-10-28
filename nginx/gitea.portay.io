@@ -14,6 +14,7 @@ server {
 	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 	ssl_ciphers HIGH:!aNULL:!MD5;
 	ssl_client_certificate /etc/nginx/certs/cacert.pem;
+	ssl_crl /etc/nginx/certs/crl.pem;
  	ssl_verify_client on;
 
 	location / {
