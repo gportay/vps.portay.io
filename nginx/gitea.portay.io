@@ -15,6 +15,8 @@ server {
 	ssl_certificate_key /etc/letsencrypt/live/gitea.portay.io/privkey.pem;
 	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 	ssl_ciphers HIGH:!aNULL:!MD5;
+	ssl_client_certificate /etc/nginx/certs/cacert.pem;
+ 	ssl_verify_client on;
 
 	location / {
 		proxy_pass http://vps590334.ovh.net:3000/;
