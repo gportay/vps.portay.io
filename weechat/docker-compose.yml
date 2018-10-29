@@ -10,7 +10,7 @@ services:
         UID: $UID
         GID: $GROUPS
     volumes:
-      - ./weechat:/home/$USER/.weechat
+      - /data/weechat/$USER:/home/$USER/.weechat
     ports:
       - "9000:9000"
       - "9001:9001"

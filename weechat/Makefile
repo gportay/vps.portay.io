@@ -17,25 +17,31 @@
 
 PREFIX ?= /usr/local
 DESTDIR ?=
+unitdir ?= /lib/systemd/system
 
 .PHONY: all
 all:
 
 .PHONY: install
 install:
+	install -D weechat@.service $(DESTDIR)$(PREFIX)$(unitdir)/weechat@.service
+	install -D docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/weechat.yml
+	install -d $(DESTDIR)/data/weechat/
 	install -D support/weechat $(DESTDIR)$(PREFIX)/bin/weechat
 
 .PHONY: uninstall
 uninstall:
+	rm -f $(DESTDIR)$(PREFIX)$(unitdir)/weechat.service
+	rm -f $(DESTDIR)/usr/local/lib/weechat.yml
 	rm -f $(DESTDIR)$(PREFIX)/bin/weechat
 
 .PHONY: install-user
 install-user:
-	$(MAKE) install PREFIX=$$HOME/.local
+	$(MAKE) install PREFIX=$$HOME/.local unitdir=/.config/systemd/user
 
 .PHONY: uninstall-user
 uninstall-user:
-	$(MAKE) uninstall PREFIX=$$HOME/.local
+	$(MAKE) uninstall PREFIX=$$HOME/.local unitdir=/.config/systemd/user
 
 .PHONY: letsencrypt
 letsencrypt: SHELL=/bin/bash
