@@ -1,0 +1,12 @@
+[Unit]
+Description=Gitea (Git with a cup of tea)
+After=network.target docker.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/local/bin/docker-compose -f /usr/local/lib/docker-compose/gitea.yml up
+ExecStop=/usr/local/bin/docker-compose -f /usr/local/lib/docker-compose/gitea.yml down
+
+[Install]
+WantedBy=multi-user.target
