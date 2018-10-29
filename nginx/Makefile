@@ -17,20 +17,20 @@
 
 PREFIX ?= /usr/local
 DESTDIR ?=
+systemd_unitdir ?= /lib/systemd/system
 
-.PHONY: letsencrypt-certonly
-letsencrypt-certonly:
-	# https://certbot.eff.org/docs/install.html#running-with-docker
-	# https://certbot.eff.org/docs/using.html#standalone
-	sudo docker run -it --rm --name certbot \
-            -v "/etc/letsencrypt:/etc/letsencrypt" \
-            -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
-	    -p 80:80 -p 443:443 \
-            certbot/certbot certonly --standalone
+.PHONY: all
+all:
 
-.PHONY: install uninstall
-install uninstall:
-	for subdir in nginx gitea; \
-	do \
-		$(MAKE) -C $$subdir $@; \
-	done
+.PHONY: install
+install:
+	install -D nginx.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx.service
+	install -D docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/nginx.yml
+	install -D gitea.portay.io $(DESTDIR)/data/nginx/gitea.portay.io
+	install -d $(DESTDIR)/data/nginx/certs
+
+.PHONY: uninstall
+uninstall:
+	rm -f $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx.service
+	rm -f $(DESTDIR)/usr/local/lib/nginx.yml
+

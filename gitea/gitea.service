@@ -1,6 +1,6 @@
 [Unit]
 Description=Gitea (Git with a cup of tea)
-After=network.target docker.service
+After=network.target docker.service nginx.service
 
 [Service]
 Type=simple
