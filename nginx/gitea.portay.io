@@ -18,6 +18,6 @@ server {
  	ssl_verify_client on;
 
 	location / {
-		proxy_pass http://vps590334.ovh.net:3000/;
+		proxy_pass http://vps218066.vps.ovh.ca:3000/;
 	}
 }
