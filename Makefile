@@ -18,15 +18,15 @@
 PREFIX ?= /usr/local
 DESTDIR ?=
 
-.PHONY: letsencrypt-certonly
-letsencrypt-certonly:
+letsencrypt-certonly letsencrypt-renew:
+letsencrypt-%:
 	# https://certbot.eff.org/docs/install.html#running-with-docker
 	# https://certbot.eff.org/docs/using.html#standalone
 	sudo docker run -it --rm --name certbot \
             -v "/etc/letsencrypt:/etc/letsencrypt" \
             -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
 	    -p 80:80 -p 443:443 \
-            certbot/certbot certonly --standalone
+            certbot/certbot $* --standalone
 
 .PHONY: install uninstall
 install uninstall:
