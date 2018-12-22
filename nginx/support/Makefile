@@ -158,7 +158,7 @@ install:
 		if test -d $$dir; then cp -a $$dir $(DESTDIR)/etc/ssl/; fi ;\
 	done
 	if test -e openssl.cnf; then sed -e '/^dir		= $$ENV::PWD/d' openssl.cnf >$(DESTDIR)/etc/ssl/openssl.cnf; fi
-	for file in cacert.pem index.txt{,.attr} serial; do \
+	for file in cacert.pem index.txt{,.attr} serial crl.pem; do \
 		if test -e $$file; then install $$file $(DESTDIR)/etc/ssl/; fi ;\
 	done
 	cp Makefile $(DESTDIR)/etc/ssl/
