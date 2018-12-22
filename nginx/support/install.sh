@@ -17,4 +17,5 @@
 
 set -e
 
+install -d $DESTDIR/etc/ssl/
 rsync -av --chown=root:root output/root/etc/ssl/. $DESTDIR/etc/ssl/.
