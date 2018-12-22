@@ -17,4 +17,4 @@
 
 set -e
 
-rsync -av --chown=root:root output/root/etc/ssl/. /etc/ssl/.
+rsync -av --chown=root:root output/root/etc/ssl/. $DESTDIR/etc/ssl/.
