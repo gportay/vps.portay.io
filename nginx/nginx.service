@@ -5,8 +5,8 @@ After=network.target remote-fs.target docker.service
 [Service]
 Type=simple
 RemainAfterExit=yes
-ExecStart=/usr/local/bin/docker-compose -f /usr/local/lib/docker-compose/nginx.yml up
-ExecStop=/usr/local/bin/docker-compose -f /usr/local/lib/docker-compose/nginx.yml down
+ExecStart=/usr/bin/docker-compose -f /usr/local/lib/docker-compose/nginx.yml up
+ExecStop=/usr/bin/docker-compose -f /usr/local/lib/docker-compose/nginx.yml down
 
 [Install]
 WantedBy=multi-user.target
