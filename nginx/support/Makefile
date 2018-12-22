@@ -15,7 +15,9 @@
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #
 
+PREFIX ?=
 DESTDIR ?=
+ssldir ?= $(PREFIX)/etc/ssl
 
 C  ?= CA
 ST ?= Quebec
@@ -153,15 +155,15 @@ crl.pem_dump:
 .PHONY: install
 install: SHELL=/bin/bash
 install:
-	install -d $(DESTDIR)/etc/ssl/
+	install -d $(DESTDIR)$(ssldir)/
 	for dir in private newcerts; do \
-		if test -d $$dir; then cp -a $$dir $(DESTDIR)/etc/ssl/; fi ;\
+		if test -d $$dir; then cp -a $$dir $(DESTDIR)$(ssldir)/; fi ;\
 	done
-	if test -e openssl.cnf; then sed -e '/^dir		= $$ENV::PWD/d' openssl.cnf >$(DESTDIR)/etc/ssl/openssl.cnf; fi
+	if test -e openssl.cnf; then sed -e '/^dir		= $$ENV::PWD/d' openssl.cnf >$(DESTDIR)$(ssldir)/openssl.cnf; fi
 	for file in cacert.pem index.txt{,.attr} serial crl.pem; do \
-		if test -e $$file; then install $$file $(DESTDIR)/etc/ssl/; fi ;\
+		if test -e $$file; then install $$file $(DESTDIR)$(ssldir)/; fi ;\
 	done
-	cp Makefile $(DESTDIR)/etc/ssl/
+	cp Makefile $(DESTDIR)$(ssldir)
 
 .PHONY: clean
 clean: SHELL=/bin/bash
