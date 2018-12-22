@@ -24,8 +24,8 @@ all:
 
 .PHONY: install
 install:
-	install -D weechat@.service $(DESTDIR)$(PREFIX)$(unitdir)/weechat@.service
-	install -D docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/weechat.yml
+	install -D -m0644 weechat@.service $(DESTDIR)$(PREFIX)$(unitdir)/weechat@.service
+	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/weechat.yml
 	install -d $(DESTDIR)/data/weechat/
 	install -D support/weechat $(DESTDIR)$(PREFIX)/bin/weechat
 

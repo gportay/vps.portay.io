@@ -24,9 +24,9 @@ all:
 
 .PHONY: install
 install:
-	install -D nginx.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx.service
-	install -D docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/nginx.yml
-	install -D gitea.portay.io $(DESTDIR)/data/nginx/gitea.portay.io
+	install -D -m0644 nginx.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx.service
+	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/nginx.yml
+	install -D -m0644 gitea.portay.io $(DESTDIR)/data/nginx/gitea.portay.io
 	install -d $(DESTDIR)/data/nginx/certs
 
 .PHONY: uninstall

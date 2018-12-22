@@ -24,8 +24,8 @@ all:
 
 .PHONY: install
 install:
-	install -D gitea.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/gitea.service
-	install -D docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/gitea.yml
+	install -D -m0644 gitea.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/gitea.service
+	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/gitea.yml
 	install -d $(DESTDIR)/data/gitea
 
 .PHONY: uninstall
