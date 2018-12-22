@@ -9,8 +9,8 @@ server {
 	listen 443 ssl;
 	server_name portay.io;
 
-	ssl_certificate /etc/letsencrypt/live/gitea.portay.io/fullchain.pem;
-	ssl_certificate_key /etc/letsencrypt/live/gitea.portay.io/privkey.pem;
+	ssl_certificate /etc/letsencrypt/live/vps.portay.io/fullchain.pem;
+	ssl_certificate_key /etc/letsencrypt/live/vps.portay.io/privkey.pem;
 	ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
 	ssl_ciphers HIGH:!aNULL:!MD5;
 	ssl_client_certificate /etc/nginx/certs/cacert.pem;
