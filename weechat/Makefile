@@ -27,6 +27,7 @@ install:
 	install -D -m0644 weechat@.service $(DESTDIR)$(PREFIX)$(unitdir)/weechat@.service
 	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/weechat.yml
 	install -d $(DESTDIR)/data/weechat/
+	install -d $(DESTDIR)$(PREFIX)/bin/
 	install -D support/weechat $(DESTDIR)$(PREFIX)/bin/weechat
 
 docker-compose.yml: SHELL=/bin/bash
