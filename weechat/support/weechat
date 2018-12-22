@@ -24,7 +24,7 @@ cid="$(docker ps -qf "name=$name")"
 if ! [[ $cid ]]
 then
 	echo "service $name down!"
-	echo "Please run \$ docker-compose [--project-directory PATH] up -d"
+	echo "Please run \$ systemctl start weechat@$USER.service"
 	exit
 fi >&2
 
