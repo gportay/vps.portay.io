@@ -20,7 +20,7 @@ DESTDIR ?=
 unitdir ?= /lib/systemd/system
 
 .PHONY: all
-all:
+all: docker-compose.yml
 
 .PHONY: install
 install:
@@ -28,6 +28,13 @@ install:
 	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/weechat.yml
 	install -d $(DESTDIR)/data/weechat/
 	install -D support/weechat $(DESTDIR)$(PREFIX)/bin/weechat
+
+docker-compose.yml: SHELL=/bin/bash
+docker-compose.yml: docker-compose.yml.in
+	sed -e "s,\$$USER,$$USER,g" \
+	    -e "s,\$$UID,$$UID,g" \
+	    -e "s,\$$GROUPS,$$GROUPS,g" \
+	    $< >$@
 
 .PHONY: uninstall
 uninstall:
@@ -49,4 +56,8 @@ letsencrypt:
 	touch weechat/ssl/relay.pem.tmp
 	sudo cat /etc/letsencrypt/live/gitea.portay.io/{privkey,fullchain}.pem >weechat/ssl/relay.pem.tmp
 	mv weechat/ssl/relay.pem{.tmp,}
+
+.PHONY: clean
+clean:
+	rm -f docker-compose.yml
 
