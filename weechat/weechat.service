@@ -1,0 +1,12 @@
+[Unit]
+Description=WeeChat, the extensible chat client.
+After=network.target docker.service
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/usr/bin/docker-compose -f ~/.config/docker-compose/weechat.yml up
+ExecStop=/usr/bin/docker-compose -f ~/.config/docker-compose/weechat.yml down
+
+[Install]
+WantedBy=multi-user.target

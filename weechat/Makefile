@@ -24,12 +24,13 @@ all: docker-compose.yml
 
 .PHONY: install
 install:
-	install -D -m0644 weechat@.service $(DESTDIR)$(PREFIX)$(unitdir)/weechat@.service
-	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/weechat-$${SUDO_USER:-$$USER}.yml
-	install -D -m0644 Dockerfile $(DESTDIR)/usr/local/lib/docker-compose/Dockerfile
-	install -d $(DESTDIR)/data/weechat/
-	install -d $(DESTDIR)$(PREFIX)/bin/
-	install -D support/weechat $(DESTDIR)$(PREFIX)/bin/weechat
+	install -d $$HOME/.config/docker-compose/
+	install -D -m0644 Dockerfile $(DESTDIR)$$HOME/.config/docker-compose/Dockerfile
+	install -D -m0644 docker-compose.yml $(DESTDIR)$$HOME/.config/docker-compose/weechat.yml
+	install -d $$HOME/.config/systemd/user/
+	install -D -m0644 weechat.service $(DESTDIR)$$HOME/.config/systemd/user/weechat.service
+	install -d $(DESTDIR)$$HOME/bin/
+	install -D support/weechat $(DESTDIR)$$HOME/bin/weechat
 
 docker-compose.yml: SHELL=/bin/bash
 docker-compose.yml: docker-compose.yml.in
@@ -40,17 +41,10 @@ docker-compose.yml: docker-compose.yml.in
 
 .PHONY: uninstall
 uninstall:
-	rm -f $(DESTDIR)$(PREFIX)$(unitdir)/weechat.service
-	rm -f $(DESTDIR)/usr/local/lib/weechat.yml
-	rm -f $(DESTDIR)$(PREFIX)/bin/weechat
-
-.PHONY: install-user
-install-user:
-	$(MAKE) install PREFIX=$$HOME/.local unitdir=/.config/systemd/user
-
-.PHONY: uninstall-user
-uninstall-user:
-	$(MAKE) uninstall PREFIX=$$HOME/.local unitdir=/.config/systemd/user
+	rm -f $(DESTDIR)$$HOME/bin/weechat
+	rm -f $(DESTDIR)$$HOME/.config/systemd/user/weechat.service
+	rm -f $(DESTDIR)$$HOME/.config/docker-compose/weechat.yml
+	rm -f $(DESTDIR)$$HOME/.config/docker-compose/Dockerfile
 
 .PHONY: letsencrypt
 letsencrypt: SHELL=/bin/bash
