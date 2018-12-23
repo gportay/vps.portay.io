@@ -56,7 +56,7 @@ uninstall-user:
 letsencrypt: SHELL=/bin/bash
 letsencrypt:
 	touch weechat/ssl/relay.pem.tmp
-	sudo cat /etc/letsencrypt/live/gitea.portay.io/{privkey,fullchain}.pem >weechat/ssl/relay.pem.tmp
+	sudo cat /etc/letsencrypt/live/vps.portay.io/{privkey,fullchain}.pem >weechat/ssl/relay.pem.tmp
 	mv weechat/ssl/relay.pem{.tmp,}
 
 .PHONY: clean
