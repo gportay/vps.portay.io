@@ -61,5 +61,5 @@ letsencrypt:
 
 .PHONY: clean
 clean:
-	rm -f docker-compose.yml
+	rm -f docker-compose.yml relay.pem
 
