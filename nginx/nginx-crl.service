@@ -1,0 +1,10 @@
+[Unit]
+Description=Renewing CRL
+
+[Service]
+Type=oneshot
+WorkingDirectory=/data/nginx/certs
+ExecStart=/usr/bin/openssl ca -config openssl.cnf -keyfile private/cakey.pem -cert cacert.pem -gencrl -out crl.pem
+
+[Install]
+WantedBy=multi-user.target

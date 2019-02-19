@@ -1,5 +1,5 @@
 #
-#  Copyright (C) 2018 Gaël PORTAY
+#  Copyright (C) 2018-2019 Gaël PORTAY
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -25,6 +25,8 @@ all:
 .PHONY: install
 install:
 	install -D -m0644 nginx.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx.service
+	install -D -m0644 nginx-crl.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx-crl.service
+	install -D -m0644 nginx-crl.timer $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx-crl.timer
 	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/nginx.yml
 	install -D -m0644 gitea.portay.io $(DESTDIR)/data/nginx/gitea.portay.io
 	install -d $(DESTDIR)/data/nginx/certs
