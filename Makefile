@@ -26,7 +26,7 @@ letsencrypt-%:
 	    -v "/etc/letsencrypt:/etc/letsencrypt" \
 	    -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
 	    -p 80:80 -p 443:443 \
-            certbot/certbot $* --standalone -d vps.portay.io -d gitlab.portay.io -d weechat.portay.io
+            certbot/certbot $* --standalone -d vps.portay.io
 
 .PHONY: install uninstall
 install uninstall:
