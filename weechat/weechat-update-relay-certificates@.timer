@@ -1,0 +1,9 @@
+[Unit]
+Description=Update the relay.pem file of WeeChat weekly
+
+[Timer]
+OnCalendar=weekly
+Persistent=true
+
+[Install]
+WantedBy=multi-user.target

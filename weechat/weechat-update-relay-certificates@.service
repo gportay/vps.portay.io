@@ -1,0 +1,9 @@
+[Unit]
+Description=Update the relay.pem file of WeeChat
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/weechat-update-relay-certificates %I /etc/letsencrypt/live/vps.portay.io-0001/
+
+[Install]
+WantedBy=multi-user.target

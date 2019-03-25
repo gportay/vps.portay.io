@@ -25,6 +25,8 @@ all: docker-compose.yml
 .PHONY: install
 install:
 	install -D -m0644 weechat@.service $(DESTDIR)$(PREFIX)$(unitdir)/weechat@.service
+	install -D -m0644 weechat-update-relay-certificates@.service $(DESTDIR)$(PREFIX)$(unitdir)/weechat-update-relay-certificates@.service
+	install -D -m0644 weechat-update-relay-certificates@.timer $(DESTDIR)$(PREFIX)$(unitdir)/weechat-update-relay-certificates@.timer
 	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/weechat-$${SUDO_USER:-$$USER}.yml
 	install -D -m0644 Dockerfile $(DESTDIR)/usr/local/lib/docker-compose/Dockerfile
 	install -d $(DESTDIR)/data/weechat/
@@ -42,6 +44,8 @@ docker-compose.yml: docker-compose.yml.in
 .PHONY: uninstall
 uninstall:
 	rm -f $(DESTDIR)$(PREFIX)$(unitdir)/weechat.service
+	rm -f $(DESTDIR)$(PREFIX)$(unitdir)/weechat-update-relay-certificates@.service
+	rm -f $(DESTDIR)$(PREFIX)$(unitdir)/weechat-update-relay-certificates@.timer
 	rm -f $(DESTDIR)/usr/local/lib/weechat.yml
 	rm -f $(DESTDIR)$(PREFIX)/bin/weechat
 	rm -f $(DESTDIR)$(PREFIX)/bin/weechat-update-relay-certificates
