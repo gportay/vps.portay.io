@@ -1,5 +1,5 @@
 #
-#  Copyright (C) 2018 Gaël PORTAY
+#  Copyright (C) 2018-2019 Gaël PORTAY
 #
 # This program is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -30,6 +30,7 @@ install:
 	install -d $(DESTDIR)/data/weechat/
 	install -d $(DESTDIR)$(PREFIX)/bin/
 	install -D support/weechat $(DESTDIR)$(PREFIX)/bin/weechat
+	install -D support/weechat-update-relay-certificates $(DESTDIR)$(PREFIX)/bin/weechat-update-relay-certificates
 
 docker-compose.yml: SHELL=/bin/bash
 docker-compose.yml: docker-compose.yml.in
@@ -43,6 +44,7 @@ uninstall:
 	rm -f $(DESTDIR)$(PREFIX)$(unitdir)/weechat.service
 	rm -f $(DESTDIR)/usr/local/lib/weechat.yml
 	rm -f $(DESTDIR)$(PREFIX)/bin/weechat
+	rm -f $(DESTDIR)$(PREFIX)/bin/weechat-update-relay-certificates
 
 .PHONY: install-user
 install-user:
