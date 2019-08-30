@@ -28,8 +28,9 @@ install:
 	install -D -m0644 nginx-crl.service $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx-crl.service
 	install -D -m0644 nginx-crl.timer $(DESTDIR)$(PREFIX)$(systemd_unitdir)/nginx-crl.timer
 	install -D -m0644 docker-compose.yml $(DESTDIR)/usr/local/lib/docker-compose/nginx.yml
-	install -D -m0644 gitea.portay.io $(DESTDIR)/data/nginx/gitea.portay.io
+	install -D -m0644 nginx.conf $(DESTDIR)/data/nginx/nginx.conf
 	install -d $(DESTDIR)/data/nginx/certs
+	install -d $(DESTDIR)/data/nginx/html
 
 .PHONY: uninstall
 uninstall:

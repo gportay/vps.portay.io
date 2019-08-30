@@ -1,8 +1,9 @@
 web:
   image: nginx
   volumes:
-    - /data/nginx/gitea.portay.io:/etc/nginx/conf.d/default.conf:ro
+    - /data/nginx/nginx.conf:/etc/nginx/conf.d/default.conf:ro
     - /data/nginx/certs:/etc/nginx/certs:ro 
+    - /data/nginx/html:/usr/share/nginx/html:ro
     - /etc/letsencrypt/:/etc/letsencrypt:ro 
   ports:
     - "80:80"
