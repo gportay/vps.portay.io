@@ -26,7 +26,7 @@ letsencrypt-%:
 	    -v "/etc/letsencrypt:/etc/letsencrypt" \
 	    -v "/var/lib/letsencrypt:/var/lib/letsencrypt" \
 	    -p 80:80 -p 443:443 \
-            certbot/certbot $* --standalone -d vps.portay.io
+            certbot/certbot $* --standalone -d vps.portay.io -d gitea.portay.io
 
 .PHONY: letsencrypt-certonly-dns-ovh
 letsencrypt-certonly-dns-ovh: ovh.ini
@@ -40,6 +40,7 @@ letsencrypt-certonly-dns-ovh: ovh.ini
 	                    --dns-ovh \
 	                    --dns-ovh-credentials /root/.secrets/certbot/ovh.ini \
 	                    --dns-ovh-propagation-seconds 60 \
+	                    -d gitea.portay.io \
 	                    -d vps.portay.io
 
 .PHONY: ovh

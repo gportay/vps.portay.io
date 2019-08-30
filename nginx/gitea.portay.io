@@ -7,7 +7,7 @@ server {
 
 server {
 	listen 443 ssl;
-	server_name portay.io;
+	server_name portay.io gitea.portay.io;
 
 	ssl_certificate /etc/letsencrypt/live/vps.portay.io-0001/fullchain.pem;
 	ssl_certificate_key /etc/letsencrypt/live/vps.portay.io-0001/privkey.pem;
